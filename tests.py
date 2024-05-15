@@ -32,7 +32,7 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.add_new_book('Преступление и наказание')
         collector.set_book_genre('Преступление и наказание', 'Ужасы')
-        assert collector.books_genre.get('Преступление и наказание') == 'Ужасы'
+        assert collector.get_book_genre('Преступление и наказание') == 'Ужасы'
 
     def test_get_books_with_specific_genre_positive_result(self):
         collector = BooksCollector()
@@ -61,7 +61,7 @@ class TestBooksCollector:
         collector.add_new_book('Теремок')
         collector.set_book_genre('Три поросенка', 'Фантастика')
         collector.set_book_genre('Кот в сапогах', 'Комедии')
-        assert collector.books_genre == {'Три поросенка' : 'Фантастика', 'Кот в сапогах' : 'Комедии', 'Теремок' : ''}
+        assert collector.get_books_genre() == {'Три поросенка' : 'Фантастика', 'Кот в сапогах' : 'Комедии', 'Теремок' : ''}
 
     def test_get_books_for_children_positive_result(self):
         collector = BooksCollector()
@@ -97,7 +97,7 @@ class TestBooksCollector:
         collector.add_book_in_favorites('Сказки')
         collector.add_book_in_favorites('Басни')
         collector.add_book_in_favorites('Стихи')
-        assert collector.favorites == ['Сказки', 'Басни', 'Стихи']
+        assert collector.get_list_of_favorites_books() == ['Сказки', 'Басни', 'Стихи']
 
 @pytest.mark.parametrize('name', ['Война и мир', 'В', '123456789012345678901234567890123456789'])
 def test_add_new_book_false(name):
